@@ -8,7 +8,7 @@ namespace CheckersGame
 {
    public enum Boardcolor
     {
-        Red,
-        Black
+        Red = 0,
+        Black = 1
     }
 }
