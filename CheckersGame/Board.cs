@@ -9,40 +9,54 @@ namespace CheckersGame
 {
     public class Board
     {
-        bool isPieceColorOnBlackSquare;
-        int[,] CheckerBoard = new int[8, 8];
-        Boardcolor Boardcolor1 = Boardcolor.Red;
-        Boardcolor Boardcolor2 = Boardcolor.Black;
+       
+        public int row;
+        public int col;
         
-
-        public Board(int[,] checkerboard)
+        public Board(int _row, int _col)
         {
-            checkerboard = this.CheckerBoard;
-          
 
-        }
-
-        public int[,] InitializeBoard(int[,] board, List<Pieces> pieces)
-        {
-            int current;
-            int next;
-           // loop through board
-           // Assign each square a color [ black or red ]
-           // Add pieces to the black squares
-           // do the same for other side
+            // loop through board
+            // Assign each square a color [ black or red ]
+            // Add pieces to the black squares
+            // do the same for other side
 
             // show in console
-
-            for (int i = 0; i < board.Length; i++)
+            this.row = _row;
+            this.col = col;
+            Square[,] gameBoard = new Square[_row, _col];
+            
+            for (int i = 0; i < _row; i++)
             {
-                for (int j = 0; j < board.Length; j++)
+                for (int j = 0; j < _col; j++)
                 {
-             
+                    if (gameBoard[i,j].color == Square.squareColor.Black)
+                    {
+                        gameBoard[i, j].color = Square.squareColor.Black;
+                        gameBoard[++i, ++j].color = Square.squareColor.Red;
+
+                    }
+                    else
+                    {
+                        gameBoard[i, j].color = Square.squareColor.Red;
+                        gameBoard[++i, ++j].color = Square.squareColor.Black;
+                    }
+                   
+
+
 
                 }
             }
 
-            return board;
+
+
+
         }
+
+
+
+
+    
+
     }
 }

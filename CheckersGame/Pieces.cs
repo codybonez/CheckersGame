@@ -9,7 +9,17 @@ namespace CheckersGame
     public class Pieces
     {
         // add piece status next
-        public PieceColor Color;
+        public enum pieceStatus
+        {
+            Man, 
+            King
+        }
+        public enum pieceColor
+        {
+            Black = 0,
+            White = 1
+        }
+
         public Pieces() { 
         
         }
