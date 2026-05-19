@@ -25,25 +25,25 @@ namespace CheckersGame
             this.row = _row;
             this.col = col;
             Square[,] gameBoard = new Square[_row, _col];
-            
+            Square.squareColor squareColor = Square.squareColor.Black;
+
             for (int i = 0; i < _row; i++)
             {
                 for (int j = 0; j < _col; j++)
                 {
-                    if (gameBoard[i,j].color == Square.squareColor.Black)
+                   gameBoard[i, j] = new Square();
+                    gameBoard[i, j].color = squareColor;
+                    
+                    if (squareColor == Square.squareColor.Black)
                     {
-                        gameBoard[i, j].color = Square.squareColor.Black;
-                        gameBoard[++i, ++j].color = Square.squareColor.Red;
-
+                        squareColor = Square.squareColor.Red;
                     }
                     else
                     {
-                        gameBoard[i, j].color = Square.squareColor.Red;
-                        gameBoard[++i, ++j].color = Square.squareColor.Black;
+                        squareColor = Square.squareColor.Black;
                     }
-                   
 
-
+                    Console.WriteLine($"Current square color of {i + 1} {j + 1} is {gameBoard[i,j].color}");
 
                 }
             }

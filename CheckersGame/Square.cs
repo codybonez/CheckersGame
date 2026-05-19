@@ -9,7 +9,7 @@ namespace CheckersGame
     public class Square
     {
         public Pieces? piece;
-        public squareColor color = new squareColor();
+        public squareColor color = squareColor.Black;
         public bool isSquareColorBlack = true;
         public bool isSquareColorRed;
         public enum squareColor
