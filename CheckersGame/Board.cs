@@ -10,10 +10,9 @@ namespace CheckersGame
     public class Board
     {
        
-        public int row;
-        public int col;
+      
         
-        public Board(int _row, int _col)
+        public Board(int row, int col)
         {
 
             // loop through board
@@ -22,29 +21,37 @@ namespace CheckersGame
             // do the same for other side
 
             // show in console
-            this.row = _row;
-            this.col = col;
-            Square[,] gameBoard = new Square[_row, _col];
-            Square.squareColor squareColor = Square.squareColor.Black;
+            
+            Square[,] gameBoard = new Square[row, col];
+            Square.squareColor? squareColor = Square.squareColor.Grey;
+            Pieces.pieceColor? pieceColor = Pieces.pieceColor.Black;
+            
 
-            for (int i = 0; i < _row; i++)
+            for (int i = 0; i < row; i++)
             {
-                for (int j = 0; j < _col; j++)
+                for (int j = 0; j < col; j++)
                 {
                    gameBoard[i, j] = new Square();
+                    gameBoard[i, j].piece = new Pieces();
                     gameBoard[i, j].color = squareColor;
-                    
-                    if (squareColor == Square.squareColor.Black)
+       
+                    if (squareColor == Square.squareColor.Grey)
                     {
+                       
                         squareColor = Square.squareColor.Red;
+                      var black_piece = gameBoard[i, j].piece.piece_ColorBlack;
                     }
                     else
                     {
-                        squareColor = Square.squareColor.Black;
+                        squareColor = Square.squareColor.Grey;
+                        
                     }
 
-                    Console.WriteLine($"Current square color of {i + 1} {j + 1} is {gameBoard[i,j].color}");
+                    Console.WriteLine($"Current square color of {i + 1} {j + 1} is {gameBoard[i, j].color}");
+                    Console.WriteLine("\n");
+                    Console.WriteLine($"Current piece color of {i + 1} {j + 1} is {gameBoard[i,j].pieceColor}");
 
+                    
                 }
             }
 
