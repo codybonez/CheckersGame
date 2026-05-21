@@ -9,9 +9,9 @@ namespace CheckersGame
 {
     public class Board
     {
-       
-      
-        
+
+
+
         public Board(int row, int col)
         {
 
@@ -21,37 +21,66 @@ namespace CheckersGame
             // do the same for other side
 
             // show in console
-            
+
             Square[,] gameBoard = new Square[row, col];
             Square.squareColor? squareColor = Square.squareColor.Grey;
             Pieces.pieceColor? pieceColor = Pieces.pieceColor.Black;
-            
+
 
             for (int i = 0; i < row; i++)
             {
                 for (int j = 0; j < col; j++)
                 {
-                   gameBoard[i, j] = new Square();
+                    gameBoard[i, j] = new Square();
                     gameBoard[i, j].piece = new Pieces();
                     gameBoard[i, j].color = squareColor;
-       
-                    if (squareColor == Square.squareColor.Grey)
+                    var black_piece = gameBoard[i, j].piece.piece_ColorBlack;
+                    var white_piece = gameBoard[i, j].piece.piece_ColorWhite;
+
+
+
+
+
+
+
+
+                    // skip rows for pieces
+                    if (i == 4 || i == 5)
                     {
-                       
+                        gameBoard[i, j].piece = null;
+                    }
+                    else if (i <= 3 && squareColor == Square.squareColor.Grey)
+                    {
+                        gameBoard[i, j].piece.piece_ColorBlack = black_piece;
                         squareColor = Square.squareColor.Red;
-                      var black_piece = gameBoard[i, j].piece.piece_ColorBlack;
+
                     }
-                    else
+                    else if (i <= 3 && squareColor == Square.squareColor.Red)
                     {
+                        gameBoard[i, j].piece.piece_ColorBlack = black_piece;
                         squareColor = Square.squareColor.Grey;
-                        
+                    }
+                    if (i >= 6 && i <= 8 && squareColor == Square.squareColor.Grey)
+                    {
+                        gameBoard[i, j].piece.piece_ColorWhite = white_piece;
+                        squareColor = Square.squareColor.Red;
+                    }
+                    else if (i >= 6 && i <= 8 && squareColor == Square.squareColor.Red)
+                    {
+                        gameBoard[i, j].piece.piece_ColorWhite = white_piece;
+                        squareColor = Square.squareColor.Grey;
                     }
 
-                    Console.WriteLine($"Current square color of {i + 1} {j + 1} is {gameBoard[i, j].color}");
-                    Console.WriteLine("\n");
-                    Console.WriteLine($"Current piece color of {i + 1} {j + 1} is {gameBoard[i,j].pieceColor}");
 
-                    
+
+
+
+
+
+                  ;
+                  
+
+
                 }
             }
 
@@ -60,10 +89,10 @@ namespace CheckersGame
 
         }
 
-
+    }
 
 
     
 
-    }
+    
 }
