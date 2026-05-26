@@ -161,6 +161,9 @@ namespace CheckersGame
                     
                     Console.WriteLine($" piece status [ {gameBoard[i, j].piece.status} ] at {i+1} {j+1}");
                     Console.WriteLine('\n');
+
+                    // use ternary operator to make custom black and white pieces and board
+
                 }
             }
 
