@@ -9,7 +9,7 @@ namespace CheckersGame
     public class Square
     {
         public Pieces? piece;
-        public squareColor? color;
+        public squareColor? Squarecolor;
    
         public Pieces.pieceStatus? status;
         public bool isSquareColorBlack;

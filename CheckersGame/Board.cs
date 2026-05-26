@@ -10,8 +10,9 @@ namespace CheckersGame
     public class Board
     {
         Square[,] gameBoard;
-
-
+        Square.squareColor? squareColor = Square.squareColor.Grey;
+        Pieces.pieceColor? pieceColor = Pieces.pieceColor.Black;
+        Pieces.pieceStatus status = Pieces.pieceStatus.None;
         public Board(int row, int col)
         {
 
@@ -23,8 +24,7 @@ namespace CheckersGame
             // show in console
 
       
-            Square.squareColor? squareColor = Square.squareColor.Grey;
-            Pieces.pieceColor? pieceColor = Pieces.pieceColor.Black;
+         
             gameBoard = new Square[row, col];
 
 
@@ -35,9 +35,9 @@ namespace CheckersGame
                 {
                     gameBoard[i, j] = new Square();
                     gameBoard[i, j].piece = new Pieces();
-                    gameBoard[i, j].color = squareColor;
-                  
-                    var status = Pieces.pieceStatus.Man;
+                    gameBoard[i, j].Squarecolor = squareColor;
+                    gameBoard[i, j].status = status;
+
 
 
 
@@ -47,75 +47,87 @@ namespace CheckersGame
 
                     // skip rows for pieces
 
-                     if (i <= 3 && squareColor == Square.squareColor.Grey)
+                    if (i <= 2 && squareColor == Square.squareColor.Grey)
                     {
-                        if (i == 4 || i == 5)
-                        {
-                            status = Pieces.pieceStatus.None;
-                            gameBoard[i, j].piece.status = status;
-                            pieceColor = Pieces.pieceColor.None;
+            
+                        
+                   
                             gameBoard[i, j].piece.piececolor = pieceColor;
-
-                        }
-                        else
-                        {
-                            gameBoard[i, j].piece.piececolor = pieceColor;
-                            gameBoard[i, j].status = status;
-                            squareColor = Square.squareColor.Red;
-                           
-                        }
+                            status = Pieces.pieceStatus.Man;
+                        gameBoard[i, j].piece.status = status;
+                        squareColor = Square.squareColor.Red;
+               
 
                     }
-                    else if (i <= 3 && squareColor == Square.squareColor.Red)
+                    else if (i <= 2 && squareColor == Square.squareColor.Red)
                     {
-                        if (i == 4 || i == 5)
-                        {
-                            status = Pieces.pieceStatus.None;
-                            gameBoard[i, j].piece.status = status;
-                            pieceColor = Pieces.pieceColor.None;
+                        
+                            
+                        
+                       
                             gameBoard[i, j].piece.piececolor = pieceColor;
-                        }
-                        else
-                        {
-                            gameBoard[i, j].piece.piececolor = pieceColor;
-                            gameBoard[i, j].status = status;
-                            squareColor = Square.squareColor.Grey;
-                        }
-                    }
-                    if (i >= 6 && i <= 8 && squareColor == Square.squareColor.Grey)
-                    {
-                        if (i == 4 || i == 5)
-                        {
-                            status = Pieces.pieceStatus.None;
-                            gameBoard[i, j].piece.status = status;
-                            pieceColor = Pieces.pieceColor.None;
-                            gameBoard[i, j].piece.piececolor = pieceColor;
-                        }
-                        else
-                        {
-                            pieceColor = Pieces.pieceColor.White;
-                            gameBoard[i, j].piece.piececolor = pieceColor;
-                            gameBoard[i, j].status = status;
 
-                            squareColor = Square.squareColor.Red;
-                        }
+                        status = Pieces.pieceStatus.None;
+                        gameBoard[i, j].piece.status = status;
+                        squareColor = Square.squareColor.Grey;
+                    
+                        
                     }
-                    else if (i >= 6 && i <= 8 && squareColor == Square.squareColor.Red)
+
+                     if (i == 3 && squareColor == Square.squareColor.Grey || i == 4 && squareColor == Square.squareColor.Grey)
                     {
-                        if (i == 4 || i == 5)
-                        {
-                            status = Pieces.pieceStatus.None;
-                            gameBoard[i, j].piece.status = status;
-                            pieceColor = Pieces.pieceColor.None;
-                            gameBoard[i, j].piece.piececolor = pieceColor;
-                        }
-                        else
-                        {
-                            gameBoard[i, j].status = status;
-                            pieceColor = Pieces.pieceColor.White;
-                            gameBoard[i, j].piece.piececolor = pieceColor;
-                            squareColor = Square.squareColor.Grey;
-                        }
+
+                        status = Pieces.pieceStatus.None;
+
+                        gameBoard[i, j].piece.status = status;
+
+                        pieceColor = Pieces.pieceColor.None;
+
+                        gameBoard[i, j].piece.piececolor = pieceColor;
+
+                        squareColor = Square.squareColor.Red;
+
+                      
+
+                    }
+                    else if (i == 3 && squareColor == Square.squareColor.Red || i == 4 && squareColor == Square.squareColor.Red)
+                    {
+
+                        status = Pieces.pieceStatus.None;
+
+                        gameBoard[i, j].piece.status = status;
+
+                        pieceColor = Pieces.pieceColor.None;
+
+                        gameBoard[i, j].piece.piececolor = pieceColor;
+
+                        squareColor = Square.squareColor.Grey;
+                       
+                    }
+
+
+
+                     if (i >= 5 && i <= 8 && squareColor == Square.squareColor.Grey)
+                    {
+
+
+                        pieceColor = Pieces.pieceColor.White;
+                        gameBoard[i, j].piece.piececolor = pieceColor;
+                        status = Pieces.pieceStatus.Man;
+                        gameBoard[i, j].piece.status = status;
+                        squareColor = Square.squareColor.Red;
+
+                    }
+                    else if (i >= 5 && i <= 8 && squareColor == Square.squareColor.Red)
+                    {
+
+
+                        status = Pieces.pieceStatus.None;
+                        gameBoard[i, j].piece.status = status;
+                        pieceColor = Pieces.pieceColor.White;
+                        gameBoard[i, j].piece.piececolor = pieceColor;
+                        squareColor = Square.squareColor.Grey;
+
                     }
 
 
@@ -144,7 +156,11 @@ namespace CheckersGame
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    Console.WriteLine($"[ {gameBoard[i, j].piece.piececolor} ] at {i} {j}");
+                    Console.WriteLine($" board color [{gameBoard[i, j].Squarecolor}] at {i + 1} {j + 1}");
+                    Console.WriteLine($" piece color [ {gameBoard[i, j].piece.piececolor} ] at {i+1} {j+1}");
+                    
+                    Console.WriteLine($" piece status [ {gameBoard[i, j].piece.status} ] at {i+1} {j+1}");
+                    Console.WriteLine('\n');
                 }
             }
 
