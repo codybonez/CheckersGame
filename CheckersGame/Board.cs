@@ -9,7 +9,7 @@ namespace CheckersGame
 {
     public class Board
     {
-
+        Square[,] gameBoard;
 
 
         public Board(int row, int col)
@@ -22,9 +22,11 @@ namespace CheckersGame
 
             // show in console
 
-            Square[,] gameBoard = new Square[row, col];
+      
             Square.squareColor? squareColor = Square.squareColor.Grey;
             Pieces.pieceColor? pieceColor = Pieces.pieceColor.Black;
+            gameBoard = new Square[row, col];
+
 
 
             for (int i = 0; i < row; i++)
@@ -34,9 +36,8 @@ namespace CheckersGame
                     gameBoard[i, j] = new Square();
                     gameBoard[i, j].piece = new Pieces();
                     gameBoard[i, j].color = squareColor;
-                    var black_piece = gameBoard[i, j].piece.piece_ColorBlack;
-                    var white_piece = gameBoard[i, j].piece.piece_ColorWhite;
-
+                  
+                    var status = Pieces.pieceStatus.Man;
 
 
 
@@ -45,30 +46,76 @@ namespace CheckersGame
 
 
                     // skip rows for pieces
-                    if (i == 4 || i == 5)
+
+                     if (i <= 3 && squareColor == Square.squareColor.Grey)
                     {
-                        gameBoard[i, j].piece = null;
-                    }
-                    else if (i <= 3 && squareColor == Square.squareColor.Grey)
-                    {
-                        gameBoard[i, j].piece.piece_ColorBlack = black_piece;
-                        squareColor = Square.squareColor.Red;
+                        if (i == 4 || i == 5)
+                        {
+                            status = Pieces.pieceStatus.None;
+                            gameBoard[i, j].piece.status = status;
+                            pieceColor = Pieces.pieceColor.None;
+                            gameBoard[i, j].piece.piececolor = pieceColor;
+
+                        }
+                        else
+                        {
+                            gameBoard[i, j].piece.piececolor = pieceColor;
+                            gameBoard[i, j].status = status;
+                            squareColor = Square.squareColor.Red;
+                           
+                        }
 
                     }
                     else if (i <= 3 && squareColor == Square.squareColor.Red)
                     {
-                        gameBoard[i, j].piece.piece_ColorBlack = black_piece;
-                        squareColor = Square.squareColor.Grey;
+                        if (i == 4 || i == 5)
+                        {
+                            status = Pieces.pieceStatus.None;
+                            gameBoard[i, j].piece.status = status;
+                            pieceColor = Pieces.pieceColor.None;
+                            gameBoard[i, j].piece.piececolor = pieceColor;
+                        }
+                        else
+                        {
+                            gameBoard[i, j].piece.piececolor = pieceColor;
+                            gameBoard[i, j].status = status;
+                            squareColor = Square.squareColor.Grey;
+                        }
                     }
                     if (i >= 6 && i <= 8 && squareColor == Square.squareColor.Grey)
                     {
-                        gameBoard[i, j].piece.piece_ColorWhite = white_piece;
-                        squareColor = Square.squareColor.Red;
+                        if (i == 4 || i == 5)
+                        {
+                            status = Pieces.pieceStatus.None;
+                            gameBoard[i, j].piece.status = status;
+                            pieceColor = Pieces.pieceColor.None;
+                            gameBoard[i, j].piece.piececolor = pieceColor;
+                        }
+                        else
+                        {
+                            pieceColor = Pieces.pieceColor.White;
+                            gameBoard[i, j].piece.piececolor = pieceColor;
+                            gameBoard[i, j].status = status;
+
+                            squareColor = Square.squareColor.Red;
+                        }
                     }
                     else if (i >= 6 && i <= 8 && squareColor == Square.squareColor.Red)
                     {
-                        gameBoard[i, j].piece.piece_ColorWhite = white_piece;
-                        squareColor = Square.squareColor.Grey;
+                        if (i == 4 || i == 5)
+                        {
+                            status = Pieces.pieceStatus.None;
+                            gameBoard[i, j].piece.status = status;
+                            pieceColor = Pieces.pieceColor.None;
+                            gameBoard[i, j].piece.piececolor = pieceColor;
+                        }
+                        else
+                        {
+                            gameBoard[i, j].status = status;
+                            pieceColor = Pieces.pieceColor.White;
+                            gameBoard[i, j].piece.piececolor = pieceColor;
+                            squareColor = Square.squareColor.Grey;
+                        }
                     }
 
 
@@ -77,15 +124,29 @@ namespace CheckersGame
 
 
 
-                  ;
                   
 
 
-                }
+
+                    }
             }
 
 
 
+
+        }
+
+
+        public void Showgame()
+        {
+            
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    Console.WriteLine($"[ {gameBoard[i, j].piece.piececolor} ] at {i} {j}");
+                }
+            }
 
         }
 

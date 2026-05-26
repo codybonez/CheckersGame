@@ -9,19 +9,20 @@ namespace CheckersGame
     public class Pieces
     {
         // add piece status next
-        public pieceColor piece_ColorBlack = Pieces.pieceColor.Black;
-        public pieceColor piece_ColorWhite = Pieces.pieceColor.White;
-        public pieceStatus Man = pieceStatus.Man;
-        public pieceStatus King = pieceStatus.King;
+        public pieceColor? piececolor = pieceColor.Black;
+        public pieceStatus status = pieceStatus.Man;
+      
         public enum pieceStatus
         {
             Man, 
-            King
+            King,
+            None
         }
         public enum pieceColor
         {
             Black = 0,
-            White = 1
+            White = 1,
+            None
         }
 
         public Pieces() { 

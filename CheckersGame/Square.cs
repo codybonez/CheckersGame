@@ -10,7 +10,7 @@ namespace CheckersGame
     {
         public Pieces? piece;
         public squareColor? color;
-        public Pieces.pieceColor? pieceColor;
+   
         public Pieces.pieceStatus? status;
         public bool isSquareColorBlack;
         public bool isSquareColorRed;
