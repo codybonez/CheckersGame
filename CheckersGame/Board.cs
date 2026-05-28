@@ -46,6 +46,7 @@ namespace CheckersGame
 
 
                     // skip rows for pieces
+                 
 
                     if (i <= 2 && squareColor == Square.squareColor.Grey)
                     {
@@ -130,17 +131,24 @@ namespace CheckersGame
 
                     }
 
-
-
-
-
-
-
-                  
-
-
-
+                    if (j == col - 1 && squareColor == Square.squareColor.Grey)
+                    {
+                        squareColor = Square.squareColor.Red;
                     }
+                    else if (j == col - 1 && squareColor == Square.squareColor.Red)
+                    {
+                        squareColor = Square.squareColor.Grey;
+                    }
+
+
+
+
+
+
+
+
+
+                }
             }
 
 
@@ -156,11 +164,10 @@ namespace CheckersGame
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    Console.WriteLine($" board color [{gameBoard[i, j].Squarecolor}] at {i + 1} {j + 1}");
-                    Console.WriteLine($" piece color [ {gameBoard[i, j].piece.piececolor} ] at {i+1} {j+1}");
-                    
-                    Console.WriteLine($" piece status [ {gameBoard[i, j].piece.status} ] at {i+1} {j+1}");
-                    Console.WriteLine('\n');
+                    Console.Write(gameBoard[i, j].Squarecolor == Square.squareColor.Grey  && gameBoard[i,j].piece.status != Pieces.pieceStatus.None ? $"[-]" : $"[ ]");
+    
+                    if (j == 7) Console.WriteLine("\r");
+                 
 
                     // use ternary operator to make custom black and white pieces and board
 
